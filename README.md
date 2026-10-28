@@ -7,7 +7,7 @@
   <img alt="node" src="https://img.shields.io/badge/node-%E2%89%A522-339933">
   <img alt="DSH" src="https://img.shields.io/badge/DSH-0.2.1--rc.2-4D6BFE">
   <img alt="platform" src="https://img.shields.io/badge/platform-Windows-0078D4">
-  <a href="https://afdian.com/u/11d6b950d2bb11f1bd9a52540025c377"><img alt="sponsor" src="https://img.shields.io/badge/%E8%B5%9E%E5%8A%A9-%E7%88%B1%E5%8F%91%E7%94%B5-946ce6"></a>
+  <a href="https://afdian.com/a/game123456"><img alt="sponsor" src="https://img.shields.io/badge/%E8%B5%9E%E5%8A%A9-%E7%88%B1%E5%8F%91%E7%94%B5-946ce6"></a>
 </p>
 
 把 QQ 私聊和群聊接进 [DeepSeek Harness](https://github.com/deepseek-ai)：群友发来的消息变成 DSH 会话里的用户
@@ -433,7 +433,7 @@ fork 只补了「长期跑得住 + 少烧 token」的那一层，逐条差异见
 
 如果它帮你省下了半夜回消息的时间，可以请杯咖啡：
 
-- ☕ **爱发电**：<https://afdian.com/u/11d6b950d2bb11f1bd9a52540025c377> —— 微信、支付宝都能付，可一次性也可按月
+- ☕ **爱发电**：<https://afdian.com/a/game123456> —— 微信、支付宝都能付，可一次性也可按月
 
 <!-- 微信赞赏码：把图片存为 assets/sponsor-qr.png，然后删掉本行和最后一行的注释标记即可显示。
 <p align="center"><img src="assets/sponsor-qr.png" width="220" alt="微信赞赏码"></p>
