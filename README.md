@@ -114,6 +114,27 @@ QQ 消息 ──► SnowLuma（OneBot v11 WS）──► 本桥接进程 ──�
 
 ## 安装与配置
 
+### 一键脚本（Windows，推荐）
+
+```powershell
+powershell -ExecutionPolicy Bypass -File install.ps1 -OwnerQQ 你的QQ号 -Groups 群号1,群号2
+```
+
+脚本会按顺序做四件事：找 Node（优先用 DSH 自带运行时）→ 装依赖 → 从 `config.example.json` 生成
+`config.json`（带上你的 QQ 号和群号，自动探测 `C:\SnowLuma`）→ 注册「只在 DSH 运行时拉起桥接」的
+计划任务。跑完打开 DeepSeek Harness，再执行 `start-qq-bridge.ps1` 即可。
+
+之后任何时候怀疑环境有问题，先跑：
+
+```powershell
+powershell -File check.ps1
+```
+
+它逐项打印 node / 依赖 / 配置 / SnowLuma / DSH / 桥接 / edge-tts 的状态，全绿就说明是代码问题而不是环境问题。
+不需要了就跑 `uninstall.ps1`（加 `-Purge` 连配置和运行数据一起删）。
+
+### 手工安装
+
 ```bash
 npm install        # 安装依赖（postinstall 会自动修补 @snowluma/sdk 的 ESM 打包 bug）
 ```
@@ -375,3 +396,14 @@ SnowLuma 同一个账号的 **HTTP token（默认 3000 端口）与 WebSocket to
 ## 合规提醒
 
 SnowLuma 是独立第三方项目，与腾讯/QQ 无隶属关系，仅供学习与技术研究；使用前请阅读其 EULA 与《QQ 用户协议》。
+
+## 致谢与赞助
+
+本仓库是 [Derpyu520/qq-bridge](https://github.com/Derpyu520/qq-bridge) 的 fork，上游那套协议实现
+（Cookie 离线铸造、mux 事件流、preset 隔离、QQ 安全守卫、表情包链路）占了全部工作量的大头，
+fork 只补了「长期跑得住 + 少烧 token」的那一层，逐条差异见 [FORK.md](FORK.md)。
+
+如果它帮你省下了半夜回消息的时间，可以请我喝杯咖啡——赞助只是心意，不提需求也照常维护。
+
+> 表情包图库使用的是本地自建素材（`~/.dsh/meme-packs`），不含任何第三方版权素材；
+> 演示视频里的群聊内容均为测试环境截图。
