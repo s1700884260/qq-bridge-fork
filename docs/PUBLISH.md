@@ -50,7 +50,12 @@ Compress-Archive -Path (Get-ChildItem $src -Force | Where-Object { $_.Name -ne '
 
 ## 推送之后
 
-1. 仓库 Settings → 加上 Topics：`qq` `deepseek` `qq-bot` `onebot` `snowluma` `windows`
-2. 在 README 顶部放一张群聊截图（`assets/` 下已有 `deepseek娘.png`，截图建议自己录）
-3. Release 里挂演示视频（10MB 以内的 mp4 可以直接拖进 Release 附件）
+1. 仓库 Settings → 加上 Topics：`qq` `deepseek` `qq-bot` `onebot` `snowluma` `windows`（已用 API 设好 10 个）
+2. **可选**：README 顶部的群聊截图。想加就自己录一张 —— 录之前过一遍 `docs/DEMO.md` 的「录制前脱敏清单」
+   （群名、群号、成员昵称、你自己的 QQ 昵称、桌面文件名、控制台里的 token 端口都别进画面）
+3. **可选**：自己录的演示视频放 Release 附件。README 现在链的是上游 `Derpyu520/qq-bridge` 的 Release 视频，
+   属于已公开内容、与你无关；不自制视频也不用改任何链接。
+   注意 Release 附件是**公开且会被镜像/存档**的，传之前同样按脱敏清单处理，并清掉视频元数据：
+   `ffmpeg -i in.mp4 -map_metadata -1 -c copy out.mp4`
 4. 贴吧/群里发帖时用 `docs/DEMO.md` 底部的配文
+
