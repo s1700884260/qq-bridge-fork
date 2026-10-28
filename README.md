@@ -7,6 +7,7 @@
   <img alt="node" src="https://img.shields.io/badge/node-%E2%89%A522-339933">
   <img alt="DSH" src="https://img.shields.io/badge/DSH-0.2.1--rc.2-4D6BFE">
   <img alt="platform" src="https://img.shields.io/badge/platform-Windows-0078D4">
+  <a href="https://afdian.com/u/11d6b950d2bb11f1bd9a52540025c377"><img alt="sponsor" src="https://img.shields.io/badge/%E8%B5%9E%E5%8A%A9-%E7%88%B1%E5%8F%91%E7%94%B5-946ce6"></a>
 </p>
 
 把 QQ 私聊和群聊接进 [DeepSeek Harness](https://github.com/deepseek-ai)：群友发来的消息变成 DSH 会话里的用户
