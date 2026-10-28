@@ -2,23 +2,48 @@
 
 **English**: [README.en.md](README.en.md) | **中文**: [README.md](README.md)
 
-> **这是一份 fork**：上游 [Derpyu520/qq-bridge](https://github.com/Derpyu520/qq-bridge)（MIT）原样保留，
-> 额外补了「长期跑得住 + 少烧 token」的那一层——本地小模型分流、会话上下文轮换、Edge TTS 念任意文字、
-> DiffSinger 真唱、百度图片搜索、DSH 端口自愈、守卫只在 DSH 运行时拉起桥接。
-> 逐条差异见 **[FORK.md](FORK.md)**。
->
-> 🚀 **三步跑起来**：`install.ps1`（装依赖 + 生成配置）→ 打开 DeepSeek Harness → `start-qq-bridge.ps1`；
-> 出问题先跑 `check.ps1`。
+<p>
+  <img alt="license" src="https://img.shields.io/badge/license-MIT-blue">
+  <img alt="node" src="https://img.shields.io/badge/node-%E2%89%A522-339933">
+  <img alt="DSH" src="https://img.shields.io/badge/DSH-0.2.1--rc.2-4D6BFE">
+  <img alt="platform" src="https://img.shields.io/badge/platform-Windows-0078D4">
+</p>
 
-> 🗂️ 文档索引（全部文档一句话说明 + 是否仍然有效）见 **[docs/README.md](docs/README.md)**；仓库目录/脚本命名约定见 **[docs/FOLDER_MAP.md](docs/FOLDER_MAP.md)**。
->
-> 🔒 QQ 会话的权限边界与安全承诺见 **[RULES.md](RULES.md)**。
->
-> 🎤 语音已内置于本仓库：预录音库在 `audio/`，任意文字念读走 `POST /api/socialV2/send-voice-text`
-> （Edge TTS，脚本 `tts-edge.py` 可单独试听），真唱走 `POST /api/socialV2/sing`（warble + DiffSinger）。
-> 上游把独立语音工具放在兄弟目录 `../voice-tool/`，本 fork 不再依赖它。
+把 QQ 私聊和群聊接进 [DeepSeek Harness](https://github.com/deepseek-ai)：群友发来的消息变成 DSH 会话里的用户
+消息，agent 的回复、提问、工具审批实时发回 QQ。
 
-把 QQ 消息接入 DSH agent：QQ 好友/群发来的消息会变成 DSH 会话里的用户消息，agent 的回复（含提问、工具审批）会发回 QQ。
+**这份 fork 的取舍是：让它能连续跑几周不崩，并且不烧冤枉钱。**
+
+<img src="assets/deepseek娘.png" width="200" align="right" alt="DeepSeek 小鲸鱼">
+
+### 相对上游多出来的东西
+
+| 能力 | 说明 |
+| --- | --- |
+| 🧠 **本地小模型分流** | 群消息先过本机 `qwen2.5:3b`（Ollama）判断「值不值得接话」，闲聊直接不理，不烧云端 token；实测 40ms 级 |
+| 🔁 **会话上下文轮换** | 单会话超阈值自动开新会话并用摘要接续，避免长上下文每轮重复计费 |
+| 🎤 **内置语音** | Edge TTS 念任意文字（`POST /api/socialV2/send-voice-text`），DiffSinger 真唱（`POST /api/socialV2/sing`） |
+| 🖼️ **表情包 / 搜图 / 搬博文** | 本地表情库、百度图片搜索、贴吧出图、网页正文搬运 |
+| 🩺 **自愈** | DSH 端口自动发现、守卫只在 DSH 运行时拉起桥接、离线/上线自动播报 |
+
+上游 [Derpyu520/qq-bridge](https://github.com/Derpyu520/qq-bridge) 的代码原样保留（MIT），逐条差异见 **[FORK.md](FORK.md)**。
+
+### 三步跑起来
+
+```powershell
+.\install.ps1            # 装依赖 + 生成 config.json（会问你群号/私聊白名单）
+# 打开 DeepSeek Harness，确认界面能进
+.\start-qq-bridge.ps1    # 起桥接；出问题先跑 .\check.ps1 自检
+```
+
+📽️ [项目介绍视频](https://github.com/Derpyu520/qq-bridge/releases/download/v0.1.5/project-intro.mp4)（约 11 MB，上游录制）
+
+> 🗂️ 全部文档的一句话说明见 **[docs/README.md](docs/README.md)**，目录与脚本命名约定见 **[docs/FOLDER_MAP.md](docs/FOLDER_MAP.md)**。
+> 🔒 权限边界与安全承诺见 **[RULES.md](RULES.md)**。
+> 🎤 语音已内置：预录音库在 `audio/`，念读脚本 `tts-edge.py` 可单独试听；上游的兄弟目录 `../voice-tool/` 本 fork 不再依赖。
+
+<details>
+<summary>📌 上游版本与 DSH 适配说明（v0.2.1-r1 / DSH 0.2.1-rc.2，点开看改动与旧版对应关系）</summary>
 
 > ⚠️ **当前版本 `v0.2.1-r1`，适配 DSH 0.2.1-rc.2**（0.2.0-rc.2 亦兼容；两个版本上都逐项实测：`npm run verify:adaptation`）。
 > 鉴权用 `~/.dsh` 里持久化的浏览器会话签名密钥**离线铸造 Cookie** —— DSH 0.1.7 起进程启动 token
@@ -54,6 +79,8 @@
 > 逐条见 [docs/guides/DSH_021_ADAPTATION.md](docs/guides/DSH_021_ADAPTATION.md)。
 >
 > 默认分支 `main` **就是**本版本，`git clone` 直接拿到，无需切换分支。
+
+</details>
 
 ```
 QQ 消息 ──► SnowLuma（OneBot v11 WS）──► 本桥接进程 ──► DSH Web API (127.0.0.1:3080/api)
