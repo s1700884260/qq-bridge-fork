@@ -434,10 +434,9 @@ fork 只补了「长期跑得住 + 少烧 token」的那一层，逐条差异见
 如果它帮你省下了半夜回消息的时间，可以请杯咖啡：
 
 - ☕ **爱发电**：<https://afdian.com/a/game123456> —— 微信、支付宝都能付，可一次性也可按月
+- 💚 **微信赞赏码**：下面这张，金额随意
 
-<!-- 微信赞赏码：把图片存为 assets/sponsor-qr.png，然后删掉本行和最后一行的注释标记即可显示。
-<p align="center"><img src="assets/sponsor-qr.png" width="220" alt="微信赞赏码"></p>
--->
+<p align="center"><img src="assets/sponsor-qr.png" width="240" alt="微信赞赏码"></p>
 
 赞助完全自愿：不影响任何功能（MIT，全部能力免费），也不构成服务合同。打赏收入补贴 API 与服务器开销。
 
